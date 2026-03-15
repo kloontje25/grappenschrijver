@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <header>
-        <h1>&#128274; Beheerder aanmaken</h1>
+        <h1>Beheerder aanmaken</h1>
     </header>
 
     <main class="formulier-wrapper">

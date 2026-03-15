@@ -50,14 +50,14 @@ function haalCategorieenOp(PDO $pdo, int $grap_id): array {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grappendatabase</title>
+    <title>Grappenopslag</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Bovenste balk met titel en knop om grap toe te voegen -->
     <header>
-        <h1>&#128514; Grappendatabase</h1>
+        <h1>Grappenopslag</h1>
         <a href="toevoegen.php" class="knop">+ Grap toevoegen</a>
     </header>
 

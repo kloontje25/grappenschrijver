@@ -82,13 +82,13 @@ $csrf = $_SESSION['csrf'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beheerderspaneel — Grappendatabase</title>
+    <title>Beheerderspaneel — Grappenopslag</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>&#128274; Beheerderspaneel</h1>
+        <h1>Beheerderspaneel</h1>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
             <span style="color:rgba(255,255,255,0.8); align-self:center; font-size:0.9rem;">
                 Ingelogd als: <strong><?= htmlspecialchars($_SESSION['admin_naam']) ?></strong>

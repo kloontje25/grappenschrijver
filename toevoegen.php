@@ -57,14 +57,14 @@ $categorieen = $pdo->query("SELECT * FROM categorieen ORDER BY naam")->fetchAll(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grap toevoegen — Grappendatabase</title>
+    <title>Grap toevoegen — Grappenopslage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Bovenste balk -->
     <header>
-        <h1>&#128514; Grappendatabase</h1>
+        <h1>Grappenopslag</h1>
         <a href="index.php" class="knop knop-terug">&#8592; Terug</a>
     </header>
 
@@ -105,7 +105,7 @@ $categorieen = $pdo->query("SELECT * FROM categorieen ORDER BY naam")->fetchAll(
                 <?php endforeach; ?>
             </div>
 
-            <button type="submit" class="knop">&#128190; Grap opslaan</button>
+            <button type="submit" class="knop">Grap indienen</button>
         </form>
     </main>
 

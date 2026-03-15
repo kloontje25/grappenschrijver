@@ -63,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beheerder inloggen — Grappendatabase</title>
+    <title>Beheerder inloggen — Grappenopslag</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>&#128514; Grappendatabase</h1>
+        <h1>Grappenopslag/h1>
         <a href="index.php" class="knop knop-terug">&#8592; Terug naar site</a>
     </header>
 
