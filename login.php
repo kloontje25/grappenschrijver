@@ -64,12 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beheerder inloggen — Grappenopslag</title>
+    <link rel="icon" href="logo.webp" type="image/webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <h1>Grappenopslag/h1>
+        <h1><a href="index.php" style="color:inherit; text-decoration:none;">Grappenopslag</a></h1>
         <a href="index.php" class="knop knop-terug">&#8592; Terug naar site</a>
     </header>
 

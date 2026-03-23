@@ -70,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // --- Data ophalen voor de pagina ---
-$wachtend    = $pdo->query("SELECT * FROM grappen WHERE goedgekeurd = 0 ORDER BY datum DESC")->fetchAll();
-$goedgekeurd = $pdo->query("SELECT * FROM grappen WHERE goedgekeurd = 1 ORDER BY datum DESC")->fetchAll();
+$wachtend    = $pdo->query("SELECT * FROM grappen WHERE goedgekeurd = 0 ORDER BY id DESC")->fetchAll();
+$goedgekeurd = $pdo->query("SELECT * FROM grappen WHERE goedgekeurd = 1 ORDER BY id DESC")->fetchAll();
 $categorieen = $pdo->query("SELECT * FROM categorieen ORDER BY naam")->fetchAll();
 
 // Het CSRF-token uit de sessie, meegestuurd als verborgen veld in elk formulier
@@ -83,6 +83,7 @@ $csrf = $_SESSION['csrf'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beheerderspaneel — Grappenopslag</title>
+    <link rel="icon" href="logo.webp" type="image/webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -132,9 +133,8 @@ $csrf = $_SESSION['csrf'];
                                 <button type="submit" class="knop knop-groen">&#10003; Goedkeuren</button>
                             </form>
 
-                            <!-- Verwijderen (met bevestigingsdialoog) -->
-                            <form method="POST" action="admin.php" style="display:inline;"
-                                  onsubmit="return confirm('Grap definitief verwijderen?')">
+                            <!-- Verwijderen -->
+                            <form method="POST" action="admin.php" style="display:inline;">
                                 <input type="hidden" name="csrf_token" value="<?= $csrf ?>">
                                 <input type="hidden" name="actie"      value="grap_verwijderen">
                                 <input type="hidden" name="id"         value="<?= $grap['id'] ?>">
@@ -165,8 +165,7 @@ $csrf = $_SESSION['csrf'];
                             <?= nl2br(htmlspecialchars($grap['tekst'])) ?>
                         </p>
                         <div class="admin-knoppen">
-                            <form method="POST" action="admin.php" style="display:inline;"
-                                  onsubmit="return confirm('Grap definitief verwijderen?')">
+                            <form method="POST" action="admin.php" style="display:inline;">
                                 <input type="hidden" name="csrf_token" value="<?= $csrf ?>">
                                 <input type="hidden" name="actie"      value="grap_verwijderen">
                                 <input type="hidden" name="id"         value="<?= $grap['id'] ?>">
@@ -201,8 +200,7 @@ $csrf = $_SESSION['csrf'];
                 <?php foreach ($categorieen as $cat): ?>
                     <div class="categorie-rij">
                         <span><?= htmlspecialchars($cat['naam']) ?></span>
-                        <form method="POST" action="admin.php" style="display:inline;"
-                              onsubmit="return confirm('Categorie verwijderen?')">
+                        <form method="POST" action="admin.php" style="display:inline;">
                             <input type="hidden" name="csrf_token" value="<?= $csrf ?>">
                             <input type="hidden" name="actie"      value="categorie_verwijderen">
                             <input type="hidden" name="id"         value="<?= $cat['id'] ?>">

@@ -14,14 +14,13 @@ USE mbscvutw_grappenmaker;
 
 -- ------------------------------------------------------------
 -- TABEL 1: grappen
--- Slaat elke grap op met een uniek ID, de tekst en de datum.
+-- Slaat elke grap op met een uniek ID en de tekst.
 -- goedgekeurd = 0 → wacht op goedkeuring (niet zichtbaar op de site)
 -- goedgekeurd = 1 → goedgekeurd door beheerder (zichtbaar op de site)
 -- ------------------------------------------------------------
 CREATE TABLE grappen (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     tekst       TEXT        NOT NULL,
-    datum       DATETIME    DEFAULT CURRENT_TIMESTAMP,
     goedgekeurd TINYINT(1)  DEFAULT 0  -- 0 = wachtend, 1 = goedgekeurd
 );
 

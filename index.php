@@ -17,17 +17,17 @@ $filterCategorie = isset($_GET['categorie']) ? (int)$_GET['categorie'] : 0;
 if ($filterCategorie > 0) {
     // Gefilterd: haal alleen GOEDGEKEURDE grappen op met de gekozen categorie.
     $stmt = $pdo->prepare("
-        SELECT g.id, g.tekst, g.datum
+        SELECT g.id, g.tekst
         FROM grappen g
         JOIN grap_categorie gc ON g.id = gc.grap_id
         WHERE gc.categorie_id = ?
           AND g.goedgekeurd = 1
-        ORDER BY g.datum DESC
+        ORDER BY g.id DESC
     ");
     $stmt->execute([$filterCategorie]);
 } else {
     // Niet gefilterd: haal alle GOEDGEKEURDE grappen op, nieuwste eerst
-    $stmt = $pdo->query("SELECT * FROM grappen WHERE goedgekeurd = 1 ORDER BY datum DESC");
+    $stmt = $pdo->query("SELECT id, tekst, goedgekeurd FROM grappen WHERE goedgekeurd = 1 ORDER BY id DESC");
 }
 $grappen = $stmt->fetchAll();
 
@@ -51,18 +51,20 @@ function haalCategorieenOp(PDO $pdo, int $grap_id): array {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grappenopslag</title>
+    <link rel="icon" href="logo.webp" type="image/webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Bovenste balk met titel en knop om grap toe te voegen -->
     <header>
-        <h1>Grappenopslag</h1>
-        <a href="toevoegen.php" class="knop">+ Grap toevoegen</a>
+        <h1><a href="index.php" style="color:inherit; text-decoration:none;">Grappenopslag</a></h1>
+        <a href="indienen.php" class="knop">Grap indienen</a>
     </header>
 
     <!-- Filterbuttons: één knop per categorie + "Alle grappen" -->
     <section class="filters">
+        <span class="filter-label" style="align-content: center;">Filter:</span>
         <!-- Actieve knop krijgt de CSS-klasse 'actief' zodat hij oplicht -->
         <a href="index.php"
            class="filter-knop <?= ($filterCategorie === 0) ? 'actief' : '' ?>">
@@ -84,7 +86,7 @@ function haalCategorieenOp(PDO $pdo, int $grap_id): array {
             <!-- Toon een melding als er geen grappen zijn (of geen resultaten bij filter) -->
             <p class="leeg">
                 Geen grappen gevonden.
-                <a href="toevoegen.php">Voeg de eerste grap toe!</a>
+                <a href="indienen.php">Voeg de eerste grap toe!</a>
             </p>
 
         <?php else: ?>
@@ -95,7 +97,7 @@ function haalCategorieenOp(PDO $pdo, int $grap_id): array {
                         <?= nl2br(htmlspecialchars($grap['tekst'])) ?>
                     </p>
 
-                    <!-- Onderste balk: categorielabels + datum -->
+                    <!-- Onderste balk: categorielabels -->
                     <div class="grap-footer">
                         <span class="categorieen">
                             <?php foreach (haalCategorieenOp($pdo, $grap['id']) as $naam): ?>
@@ -103,9 +105,6 @@ function haalCategorieenOp(PDO $pdo, int $grap_id): array {
                                     <?= htmlspecialchars($naam) ?>
                                 </span>
                             <?php endforeach; ?>
-                        </span>
-                        <span class="datum">
-                            <?= date('d-m-Y', strtotime($grap['datum'])) ?>
                         </span>
                     </div>
                 </article>
